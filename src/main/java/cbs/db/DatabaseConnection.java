@@ -2,7 +2,6 @@ package cbs.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import io.github.cdimascio.dotenv.Dotenv;
@@ -47,24 +46,5 @@ public class DatabaseConnection{
             connection.close();
             System.out.println("Database connection closed!");
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Hello, world! from dbc class.");
-        // Test connet again with dotenv
-        String sql = "SELECT * FROM status";
-        try {
-            ResultSet result= DatabaseConnection.getInstance().getConnection().createStatement().executeQuery(sql);
-            System.out.println("Records from the 'name' column:");
-            while (result.next()) {
-                String name = result.getString("name");
-                System.out.println(name);
-            }
-            DatabaseConnection.getInstance().closeConnection();
-        }
-        catch (SQLException e) {
-            throw new RuntimeException("Error while get data from database");
-        }
-
     }
 }
