@@ -43,8 +43,4 @@ public abstract class TransactionDetails {
     public final TransactionStatus get_status() {
         return this.status;
     }
-
-    // Methods
-    public abstract String display();
-    
 }
