@@ -2,11 +2,7 @@ package cbs;
 
 import java.sql.Timestamp;
 
-enum AccountStatus {
-    ACITVE,
-    FROZEN,
-    CLOSE
-}
+import cbs.enums.AccountStatus;
 
 public class Account {
     private final int id;
@@ -16,9 +12,19 @@ public class Account {
     private Timestamp createdAt; 
     private Timestamp updatedAt;
 
+    private int customer_id;
+
     public Account(int id, Customer customer, double balance, AccountStatus status, Timestamp createdAt) {
         this.id = id;
         this.customer = customer;
+        this.balance = balance;
+        this.status = status;
+        this.createdAt = createdAt;
+    }
+
+    public Account (int id, int customer_id, double balance, AccountStatus status, Timestamp createdAt) {
+        this.id = id;
+        this.customer_id = customer_id;
         this.balance = balance;
         this.status = status;
         this.createdAt = createdAt;
@@ -33,12 +39,16 @@ public class Account {
         return this.customer;
     }
 
+    public final int get_customer_id() {
+        return this.customer_id;
+    }
+
     public final double get_balance() {
         return this.balance;
     }
 
-    public final AccountStatus get_status() {
-        return this.status;
+    public final String get_status() {
+        return this.status.name();
     }
 
     public final Timestamp get_created_date() {
