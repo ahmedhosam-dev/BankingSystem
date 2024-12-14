@@ -2,10 +2,8 @@ package cbs;
 
 import java.sql.Timestamp;
 
-enum TransactionType {
-    DEPOSIT,
-    WITHDRAW
-}
+import cbs.enums.TransactionStatus;
+import cbs.enums.TransactionType;
 
 public class Transaction extends TransactionDetails{
     private TransactionType type;
@@ -15,8 +13,12 @@ public class Transaction extends TransactionDetails{
         this.type = type;
     }
 
+    public Transaction(int id, int account, Timestamp transactionDate, double amount, TransactionStatus status, TransactionType type) {
+        super(id, account, transactionDate, amount, status);
+        this.type = type;
+    }
     // Getting members
-    public TransactionType get_type() {
-        return this.type;
+    public String get_type() {
+        return this.type.name();
     }
 }
