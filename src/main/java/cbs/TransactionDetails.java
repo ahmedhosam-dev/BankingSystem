@@ -2,15 +2,12 @@ package cbs;
 
 import java.sql.Timestamp;
 
-enum TransactionStatus {
-    SUCCESS,
-    FAILED,
-    PENDING
-}
+import cbs.enums.TransactionStatus;
 
 public abstract class TransactionDetails {
     private final int id;
     private Account account;
+    private int account_id;
     private Timestamp transactionDate;
     private double amount;
     private TransactionStatus status;
@@ -18,6 +15,13 @@ public abstract class TransactionDetails {
     public TransactionDetails(int id, Account account, Timestamp transactionDate, double amount, TransactionStatus status) {
         this.id = id;
         this.account = account;
+        this.transactionDate = transactionDate;
+        this.amount = amount;
+        this.status = status;
+    }
+    public TransactionDetails(int id, int account, Timestamp transactionDate, double amount, TransactionStatus status) {
+        this.id = id;
+        this.account_id = account;
         this.transactionDate = transactionDate;
         this.amount = amount;
         this.status = status;
@@ -32,6 +36,10 @@ public abstract class TransactionDetails {
         return this.account;
     }
 
+    public final int get_account_id() {
+        return this.account_id;
+    }
+
     public final Timestamp get_transaction_date() {
         return this.transactionDate;
     }
@@ -40,7 +48,7 @@ public abstract class TransactionDetails {
         return this.amount;
     }
 
-    public final TransactionStatus get_status() {
-        return this.status;
+    public final String get_status() {
+        return this.status.name();
     }
 }
