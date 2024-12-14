@@ -1,10 +1,6 @@
 package cbs;
 
-enum CustomerStatus {
-    ACTIVE,
-    INACTIVE,
-    FROZEN
-}
+import cbs.enums.CustomerStatus;
 
 public class Customer extends Person {
     private String birthday;
@@ -30,8 +26,8 @@ public class Customer extends Person {
     public final String get_address() {
         return this.address;
     }
-    public final CustomerStatus get_status() {
-        return this.status;
+    public final String get_status() {
+        return this.status.name();
     }
 
     // Methods
