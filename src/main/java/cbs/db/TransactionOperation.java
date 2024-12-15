@@ -50,4 +50,16 @@ public class TransactionOperation {
         }
         return null;
     }
+
+    // Get all transactions
+    public static ResultSet get_all(int account_id) throws SQLException {
+        String sql = "SELECT * FROM `transaction` WHERE account_id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, account_id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs;
+            }
+        }
+    }
 }
