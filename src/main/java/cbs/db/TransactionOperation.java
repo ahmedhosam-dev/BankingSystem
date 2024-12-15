@@ -22,7 +22,7 @@ public class TransactionOperation {
                     + "VALUES (?, ?, ?, ?, ?);";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, transaction.get_account().get_id());
+            stmt.setInt(1, transaction.get_account_id());
             stmt.setDouble(2, transaction.get_amount());
             stmt.setTimestamp(3, transaction.get_transaction_date());
             stmt.setString(4, transaction.get_type());
