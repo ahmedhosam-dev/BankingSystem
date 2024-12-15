@@ -115,6 +115,10 @@ public class Account {
         TransferOperation.insert(transfer);
     }
 
+    public final void save_changes() throws SQLException {
+        AccountOperation.update(this);
+    }
+
     public String display() {
         return "Account Info:\nCustomer ID: " + get_customer_id() + "\nBalance: " + get_balance() +
                "\nStatus: " + get_status() + "\nCreated at: " + get_created_date() + "\nUpdated at: " + get_last_updated_date();
