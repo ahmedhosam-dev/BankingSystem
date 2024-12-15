@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import cbs.Transaction;
 import cbs.enums.TransactionStatus;
@@ -52,13 +54,28 @@ public class TransactionOperation {
     }
 
     // Get all transactions
-    public static ResultSet get_all(int account_id) throws SQLException {
+    public static List<Transaction> get_all(int account_id) throws SQLException {
+        List<Transaction> transactions = new ArrayList<Transaction>();
+
         String sql = "SELECT * FROM `transaction` WHERE account_id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, account_id);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                return rs;
+                while (rs.next()) {
+                    Transaction transaction = new Transaction(
+                        rs.getInt("id"),
+                        rs.getInt("account_id"),
+                        rs.getTimestamp("date"),
+                        rs.getDouble("amount"),
+                        TransactionStatus.valueOf(rs.getString("status")),
+                        TransactionType.valueOf(rs.getString("type")),
+                        rs.getInt("recipient_account_id")
+                    );
+                    transactions.add(transaction);
+                }
+
+                return transactions;
             }
         }
     }
