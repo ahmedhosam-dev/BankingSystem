@@ -6,19 +6,11 @@ import cbs.enums.TransactionStatus;
 
 public abstract class TransactionDetails {
     private final int id;
-    private Account account;
     private int account_id;
     private Timestamp transactionDate;
     private double amount;
     private TransactionStatus status;
 
-    public TransactionDetails(int id, Account account, Timestamp transactionDate, double amount, TransactionStatus status) {
-        this.id = id;
-        this.account = account;
-        this.transactionDate = transactionDate;
-        this.amount = amount;
-        this.status = status;
-    }
     public TransactionDetails(int id, int account, Timestamp transactionDate, double amount, TransactionStatus status) {
         this.id = id;
         this.account_id = account;
@@ -30,10 +22,6 @@ public abstract class TransactionDetails {
     // Getting members
     public final int get_id() {
         return this.id;
-    }
-
-    public final Account get_account() {
-        return this.account;
     }
 
     public final int get_account_id() {
