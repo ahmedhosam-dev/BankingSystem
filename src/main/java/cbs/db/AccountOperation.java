@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import cbs.Account;
 import cbs.enums.AccountStatus;
@@ -51,10 +52,12 @@ public class AccountOperation {
     public static void update(Account account) throws SQLException {
         String sql = "UPDATE `account` SET `status`=? ,`balance`=?, `updated_at`=? WHERE id = ?";
 
+        Timestamp currentTime = new Timestamp(System.currentTimeMillis());
+
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, account.get_status());
             stmt.setDouble(2, account.get_balance());
-            stmt.setTimestamp(3, account.get_last_updated_date());
+            stmt.setTimestamp(3, currentTime);
             stmt.setInt(4, account.get_id());
 
             if (stmt.executeUpdate() > 0) {
