@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import cbs.User;
 import cbs.enums.UserRole;
 
+import cbs.auth.Authentication;
+
 public class UserOperation {
     private static final Connection connection = DatabaseConnection.getInstance().getConnection();
 
@@ -22,7 +24,7 @@ public class UserOperation {
                 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, user.get_name());
-            stmt.setString(2, user.get_password());
+            stmt.setString(2, Authentication.hash_password(user.get_password()));
             stmt.setString(3, user.get_full_name());
             stmt.setString(4, user.get_email());
             stmt.setString(5, user.get_role().name());
