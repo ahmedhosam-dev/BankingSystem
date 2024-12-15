@@ -39,7 +39,7 @@ public class AccountOperation {
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    return new Account(ID, rs.getInt("customer_id"), rs.getDouble("balance"), AccountStatus.valueOf(rs.getString("status")), rs.getTimestamp("created_at"));
+                    return new Account(ID, rs.getInt("customer_id"), rs.getDouble("balance"), AccountStatus.valueOf(rs.getString("status")), rs.getTimestamp("created_at"), rs.getTimestamp("updated_at"));
                 }
             }
         }
