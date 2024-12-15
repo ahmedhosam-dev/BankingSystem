@@ -1,7 +1,7 @@
 package cbs.enums;
 
 public enum AccountStatus {
-    ACITVE,
+    ACTIVE,
     FROZEN,
     CLOSE
 }
