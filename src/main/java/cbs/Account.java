@@ -6,21 +6,12 @@ import cbs.enums.AccountStatus;
 
 public class Account {
     private final int id;
-    private Customer customer;
+    private int customer_id;
     private double balance;
     private AccountStatus status;
     private Timestamp createdAt; 
     private Timestamp updatedAt;
 
-    private int customer_id;
-
-    public Account(int id, Customer customer, double balance, AccountStatus status, Timestamp createdAt) {
-        this.id = id;
-        this.customer = customer;
-        this.balance = balance;
-        this.status = status;
-        this.createdAt = createdAt;
-    }
 
     public Account (int id, int customer_id, double balance, AccountStatus status, Timestamp createdAt) {
         this.id = id;
@@ -33,10 +24,6 @@ public class Account {
     // Getting members
     public final int get_id() {
         return this.id;
-    }
-
-    public final Customer get_customer() {
-        return this.customer;
     }
 
     public final int get_customer_id() {
@@ -61,7 +48,7 @@ public class Account {
 
     // Methods
     public String display() {
-        return "Account Info:\nCustomer name: " + get_customer().get_name() + "\nBalance: " + get_balance() +
+        return "Account Info:\nCustomer ID: " + get_customer_id() + "\nBalance: " + get_balance() +
                "\nStatus: " + get_status() + "\nCreated at: " + get_created_date() + "\nUpdated at: " + get_last_updated_date();
     }
 }
