@@ -12,6 +12,8 @@ public class Authentication {
     public static boolean check_auth(String username, String password) throws SQLException {
         User user = UserOperation.select(username);
         
+        if (user == null) { return false; }
+
         if (check_password(password, user.get_password())) {
             return true;
         }
