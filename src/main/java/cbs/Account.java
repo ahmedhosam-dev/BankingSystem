@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 
 import cbs.db.AccountOperation;
 import cbs.db.TransactionOperation;
-import cbs.db.TransferOperation;
 import cbs.enums.AccountStatus;
 import cbs.enums.TransactionStatus;
 import cbs.enums.TransactionType;
@@ -110,9 +109,9 @@ public class Account {
             transactionStatus = TransactionStatus.FAILED;
         }
 
-        Transfer transfer = new Transfer(0, get_id(), new Timestamp(System.currentTimeMillis()), amount, transactionStatus, to);
+        Transaction transaction = new Transaction(0, get_id(), new Timestamp(System.currentTimeMillis()), amount, transactionStatus, TransactionType.TRANSFER, to);
         recipient.set_balance(amount);
-        TransferOperation.insert(transfer);
+        TransactionOperation.insert(transaction);
     }
 
     public final void save_changes() throws SQLException {
