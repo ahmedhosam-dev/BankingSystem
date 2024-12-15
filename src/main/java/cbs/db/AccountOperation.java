@@ -20,7 +20,7 @@ public class AccountOperation {
         String sql = "INSERT INTO `account`(`customer_id`, `status`, `balance`) VALUES (?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, account.get_customer().get_id());
+            stmt.setInt(1, account.get_customer_id());
             stmt.setString(2, account.get_status());
             stmt.setDouble(3, account.get_balance());
 
