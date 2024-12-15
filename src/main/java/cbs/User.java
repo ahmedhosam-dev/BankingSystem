@@ -1,7 +1,6 @@
 package cbs;
 
 import cbs.enums.UserRole;
-import cbs.auth.Authentication;
 
 public class User extends Person{
     private UserRole role;
@@ -20,7 +19,7 @@ public class User extends Person{
     }
 
     public String get_password() {
-        return Authentication.hash_password(this.password);
+        return this.password;
     }
 
     // Methods
