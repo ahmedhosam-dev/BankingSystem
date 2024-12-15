@@ -21,8 +21,8 @@ public class TransferOperation {
                     + "VALUES (?, ?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, transfer.get_account().get_id());
-            stmt.setInt(2, transfer.get_account().get_id());
+            stmt.setInt(1, transfer.get_account_id());
+            stmt.setInt(2, transfer.get_account_id());
             stmt.setDouble(3, transfer.get_amount());
             stmt.setTimestamp(4, transfer.get_transaction_date());
             stmt.setString(5, transfer.get_status());
