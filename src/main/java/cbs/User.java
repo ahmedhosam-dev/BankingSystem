@@ -1,17 +1,16 @@
 package cbs;
 
-enum UserRole {
-    ADMIN,
-    EMPLOYEE
-}
+import cbs.enums.UserRole;
+import cbs.auth.Authentication;
 
-class User extends Person{
+public class User extends Person{
     private UserRole role;
     private String password;
 
+    // For createint new user 
     public User(int id, String name, String fullName, String email, String password, UserRole role) {
         super(id, name, fullName, email);
-        this.password = password; // Hash function
+        this.password = password; 
         this.role = role;
     }
 
@@ -20,8 +19,8 @@ class User extends Person{
         return this.role;
     }
 
-    protected String get_password() {
-        return this.password;
+    public String get_password() {
+        return Authentication.hash_password(this.password);
     }
 
     // Methods
