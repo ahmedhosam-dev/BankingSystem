@@ -5,6 +5,8 @@ A simple banking system task for university that implements main operations such
 
 The university requirements were just to implement OOP in a real-world program, so I wanted to try out the things I learned before. Actually, it's my first time writing Java code, so if you have any feedback, I would love to hear it.
 
+I planned to implement features for adding, deleting, and editing customers and accounts, but I didn't have enough time to complete them.
+
 ## Screenshots
 | Login Window | Main Window | Get Account | Deposit | Result  |
 | ------------- | ----------- | ----------- | ------- | ------ |
