@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2024 at 01:24 PM
+-- Generation Time: Dec 16, 2024 at 04:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,6 +36,14 @@ CREATE TABLE `account` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`id`, `customer_id`, `status`, `balance`, `created_at`, `updated_at`) VALUES
+(2, 3, 'ACTIVE', 0, '2024-12-15 16:53:24', '2024-12-16 14:06:18'),
+(3, 4, 'ACTIVE', 10300, '2024-12-16 12:57:42', '2024-12-16 14:06:19');
+
 -- --------------------------------------------------------
 
 --
@@ -53,6 +61,14 @@ CREATE TABLE `customer` (
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `full_name`, `birthday`, `email`, `phone_number`, `address`, `status`) VALUES
+(3, 'Ahmed', 'Ahmed Hossam', '2004-03-14', 'ahmedhosam.dev@gmail.com', '+201147021121', 'Cairo, Egypt', 'ACTIVE'),
+(4, 'Ali', 'Ali Mohamed Ali', '1999-12-12', 'alimohamed@gmail.com', '+201147002123', 'Earth', 'ACTIVE');
+
 -- --------------------------------------------------------
 
 --
@@ -69,20 +85,36 @@ CREATE TABLE `transaction` (
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `transfer`
+-- Dumping data for table `transaction`
 --
 
-CREATE TABLE `transfer` (
-  `id` int(11) NOT NULL,
-  `sender_account_id` int(11) NOT NULL,
-  `recipient_account_id` int(11) NOT NULL,
-  `amount` decimal(10,0) NOT NULL,
-  `date` int(11) NOT NULL,
-  `status_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `transaction` (`id`, `account_id`, `recipient_account_id`, `amount`, `date`, `type`, `status`) VALUES
+(4, 2, NULL, 20.00, '2024-12-15 20:13:47', 'DEPOSIT', 'SUCCESS'),
+(5, 2, NULL, 0.00, '2024-12-15 16:53:24', 'DEPOSIT', 'FAILED'),
+(6, 2, NULL, 100000.00, '2024-12-15 16:53:24', 'DEPOSIT', 'SUCCESS'),
+(7, 2, NULL, 100000.00, '2024-12-15 16:53:24', 'DEPOSIT', 'SUCCESS'),
+(8, 2, NULL, 12.22, '2024-12-15 16:53:24', 'DEPOSIT', 'SUCCESS'),
+(9, 2, NULL, 10000234.12, '2024-12-15 16:53:24', 'DEPOSIT', 'SUCCESS'),
+(10, 2, NULL, 1000000.00, '2024-12-16 02:01:21', 'WITHDRAW', 'SUCCESS'),
+(11, 2, NULL, 9400246.00, '2024-12-16 02:01:45', 'WITHDRAW', 'SUCCESS'),
+(12, 2, NULL, 234.00, '2024-12-16 02:01:58', 'WITHDRAW', 'FAILED'),
+(13, 2, NULL, 22.00, '2024-12-16 02:23:32', 'WITHDRAW', 'FAILED'),
+(14, 2, NULL, 22.00, '2024-12-16 02:25:33', 'WITHDRAW', 'FAILED'),
+(15, 2, NULL, 22.00, '2024-12-16 02:28:43', 'WITHDRAW', 'FAILED'),
+(16, 2, NULL, 22.00, '2024-12-16 02:30:52', 'WITHDRAW', 'FAILED'),
+(17, 2, NULL, 222.00, '2024-12-16 12:14:20', 'WITHDRAW', 'FAILED'),
+(18, 2, NULL, 222.00, '2024-12-16 12:14:35', 'TRANSFER', 'FAILED'),
+(19, 2, NULL, 12.00, '2024-12-15 16:53:24', 'DEPOSIT', 'SUCCESS'),
+(20, 2, NULL, 12.00, '2024-12-16 12:40:18', 'WITHDRAW', 'SUCCESS'),
+(21, 2, NULL, 1000.00, '2024-12-15 16:53:24', 'DEPOSIT', 'SUCCESS'),
+(22, 3, NULL, 22.00, '2024-12-16 12:58:47', 'TRANSFER', 'FAILED'),
+(23, 2, NULL, 500.00, '2024-12-16 12:59:25', 'TRANSFER', 'SUCCESS'),
+(24, 2, NULL, 500.00, '2024-12-16 13:00:50', 'TRANSFER', 'SUCCESS'),
+(25, 2, NULL, 100.00, '2024-12-16 13:03:40', 'TRANSFER', 'SUCCESS'),
+(26, 2, NULL, 10000.00, '2024-12-15 16:53:24', 'DEPOSIT', 'SUCCESS'),
+(27, 2, NULL, 200.00, '2024-12-16 14:05:47', 'WITHDRAW', 'SUCCESS'),
+(28, 2, NULL, 10200.00, '2024-12-16 14:06:17', 'TRANSFER', 'SUCCESS');
 
 -- --------------------------------------------------------
 
@@ -136,15 +168,6 @@ ALTER TABLE `transaction`
   ADD KEY `recipient_account_id` (`recipient_account_id`);
 
 --
--- Indexes for table `transfer`
---
-ALTER TABLE `transfer`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `recipient_account_id` (`recipient_account_id`),
-  ADD KEY `sender_account_id` (`sender_account_id`),
-  ADD KEY `status_id` (`status_id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -159,25 +182,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `transfer`
---
-ALTER TABLE `transfer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -201,14 +218,6 @@ ALTER TABLE `account`
 ALTER TABLE `transaction`
   ADD CONSTRAINT `transaction_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `transaction_ibfk_2` FOREIGN KEY (`recipient_account_id`) REFERENCES `account` (`id`);
-
---
--- Constraints for table `transfer`
---
-ALTER TABLE `transfer`
-  ADD CONSTRAINT `transfer_ibfk_1` FOREIGN KEY (`recipient_account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transfer_ibfk_2` FOREIGN KEY (`sender_account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transfer_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `trans_status` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
