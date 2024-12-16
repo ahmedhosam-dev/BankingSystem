@@ -1,6 +1,6 @@
 package cbs;
 
-public abstract class Person implements IDGetterInterface {
+public abstract class Person implements PersonStuffInterface {
     private final int id;
     private String name;
     private String fullName;
