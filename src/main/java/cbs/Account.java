@@ -99,18 +99,16 @@ public class Account {
         TransactionOperation.insert(transaction);
     }
 
-    public final void transfer(double amount, int to) throws SQLException {
+    public final void transfer(double amount, Account to) throws SQLException {
         TransactionStatus transactionStatus;
-        Account recipient = AccountOperation.select(to);
-
-        if (unset_balance(amount) && recipient != null) {
+        if (unset_balance(amount) && to != null) {
             transactionStatus = TransactionStatus.SUCCESS;
         } else {
             transactionStatus = TransactionStatus.FAILED;
         }
 
-        Transaction transaction = new Transaction(0, get_id(), new Timestamp(System.currentTimeMillis()), amount, transactionStatus, TransactionType.TRANSFER, to);
-        recipient.set_balance(amount);
+        Transaction transaction = new Transaction(0, get_id(), new Timestamp(System.currentTimeMillis()), amount, transactionStatus, TransactionType.TRANSFER, to.get_id());
+        to.set_balance(amount);
         TransactionOperation.insert(transaction);
     }
 
