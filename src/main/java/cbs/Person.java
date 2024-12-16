@@ -14,21 +14,27 @@ public abstract class Person implements PersonStuffInterface {
     }
 
     // Getting members
+    @Override
     public final int get_id() {
         return this.id;
     }
 
+    @Override
     public final String get_name() {
         return this.name;
     }
 
+    @Override
     public final String get_full_name() {
         return this.fullName;
     }
+
+    @Override
     public final String get_email() {
         return this.email;
     }
 
     // Methods
+    @Override
     public abstract String display();
 }
