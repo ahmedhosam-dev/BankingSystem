@@ -554,8 +554,10 @@ public class MainWindow extends javax.swing.JFrame {
         if (senderAccount == null || recipientAccount == null) { JOptionPane.showMessageDialog(this, "There's no account selected!", "Account not found", JOptionPane.WARNING_MESSAGE); return; }
 
         if (!SEARCHTextField.getText().isEmpty() && amount > 0.0) {
-            senderAccount.transfer(amount, recipientID);
+            senderAccount.transfer(amount, recipientAccount);
             JOptionPane.showMessageDialog(this, "Transfer done Successfully!", "Successfully", JOptionPane.PLAIN_MESSAGE);
+            senderAccount.save_changes();
+            recipientAccount.save_changes();
             SearchButtonActionPerformed(evt);
         } 
         else {
