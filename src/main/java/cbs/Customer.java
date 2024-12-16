@@ -36,4 +36,9 @@ public class Customer extends Person {
         return "Cusomter name: " + get_name() + "\nEmail: " + get_email() +
                "\nPhone: " + get_phone_number() + "\nStatus: " + get_status();
     }
+
+    @Override
+    public String toString() {
+        return "Id: " + get_id() + "\nName: " + get_name() + "\nEmail: " + get_email() + "\nPhone: " + get_phone_number() + "\nAddress: " + get_address() + "\nStatus: " + get_status();
+    }
 }
