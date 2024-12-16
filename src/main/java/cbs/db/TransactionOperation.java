@@ -57,7 +57,7 @@ public class TransactionOperation {
     public static List<Transaction> get_all(int account_id) throws SQLException {
         List<Transaction> transactions = new ArrayList<Transaction>();
 
-        String sql = "SELECT * FROM `transaction` WHERE account_id = ?";
+        String sql = "SELECT * FROM `transaction` WHERE account_id = ? ORDER BY `date` ASC";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setInt(1, account_id);
 
