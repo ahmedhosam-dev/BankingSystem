@@ -4,6 +4,10 @@
  */
 package cbs.gui;
 
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import cbs.auth.Authentication;
+
 /**
  *
  * @author Ahmed
@@ -94,7 +98,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         PasswordField.setBackground(new java.awt.Color(255, 255, 255));
         PasswordField.setForeground(new java.awt.Color(69, 71, 75));
-        PasswordField.setText("admin");
+        PasswordField.setText("mohamed");
         PasswordField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 12, 1, 1));
         PasswordField.setMargin(new java.awt.Insets(5, 6, 2, 6));
         PasswordField.setPreferredSize(new java.awt.Dimension(103, 26));
@@ -107,14 +111,14 @@ public class LoginFrame extends javax.swing.JFrame {
         SubmitButton.setPreferredSize(new java.awt.Dimension(170, 38));
         SubmitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitButtonActionPerformed(evt);
+                    SubmitButtonActionPerformed(evt);
             }
         });
 
         UserNameTextField.setBackground(new java.awt.Color(255, 255, 255));
         UserNameTextField.setFont(new java.awt.Font("Montserrat", 0, 12)); // NOI18N
         UserNameTextField.setForeground(new java.awt.Color(69, 71, 75));
-        UserNameTextField.setText("admin");
+        UserNameTextField.setText("mohamed");
         UserNameTextField.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 12, 1, 1));
 
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
@@ -180,6 +184,25 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
+        char[] pf = PasswordField.getPassword();
+        String value = new String(pf);
+        
+        try {
+            if (Authentication.check_auth(UserNameTextField.getText(), value)) {
+                JOptionPane.showMessageDialog(this, "Welcome back Mr." + UserNameTextField.getText());
+                dispose();
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.setVisible(true);
+                mainWindow.pack();
+                mainWindow.setLocationRelativeTo(null);
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Username or Passowrd is invalid!", "Try agin!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "User name or Passowrd is invalid!", "Try again!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_SubmitButtonActionPerformed
 
 
